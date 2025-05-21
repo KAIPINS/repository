@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>端午粽子大乱斗</title>
+    <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(99, 102, 241, 0.2);
+            z-index: -1;
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        .shadow-glow {
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.02);
+        }
+
+        .data-pill {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(99, 102, 241, 0.1);
+            color: #4f46e5;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .zongzi-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .zongzi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .vote-btn {
+            transition: all 0.3s ease;
+        }
+
+        .vote-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .comment-bubble {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comment-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent;
+        }
+
+        .debate-scene {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .debate-item {
+            text-align: center;
+            flex: 1;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 导航条 -->
+    <nav class="glassmorphism sticky top-0 z-50 p-4 mb-8">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="text-xl font-bold bg-gradient-to-r from-green-600 to-yellow-500 text-transparent bg-clip-text">
+                <i class="fas fa-dragon mr-2"></i>端午粽子大乱斗
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部横幅 -->
+    <header class="container mx-auto py-12 px-4 md:px-8 relative">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                端午粽子口味<span class="highlight-text">世纪大战</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8">甜党咸党谁才是王者？来为你最爱的粽子打call！</p>
+        </div>
+    </header>
+
+    <!-- 粽子大战部分 -->
+    <section class="container mx-auto py-12 px-4 md:px-8">
+        <div class="glassmorphism p-8 mb-16">
+            <h2 class="text-3xl font-bold mb-6 flex items-center">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-yellow-500 flex items-center justify-center text-white mr-3">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                粽子口味<span class="text-yellow-600 ml-2">大乱斗</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- 甜粽子 -->
+                <div class="zongzi-card glassmorphism p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 mr-4">
+                            <i class="fas fa-candy-cane"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-red-600">甜粽子派</h3>
+                    </div>
+                    <img src="https://p3-search.byteimg.com/obj/labis/eab133d8753b2a132b4a45d8ffc03177" alt="甜粽子" class="w-full rounded-lg mb-4">
+                    <p class="text-gray-600 mb-4">"甜粽子才是正统！豆沙的绵密、红枣的香甜、蜜枣的醇厚，每一口都是幸福的味道！"</p>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-700 mb-2">甜粽阵营以江南、华北地区为主，主打一个'甜到心坎里'</h4>
+                        <div class="comment-bubble">
+                            <p>"觉得咸粽好吃的该拉出去狠狠打一顿！"</p>
+                        </div>
+                        <div class="comment-bubble">
+                            <p>"甜粽是穿越千年的浪漫！糯米裹着红豆沙，像咬开一颗温柔的心~"</p>
+                        </div>
+                        <div class="comment-bubble">
+                            <p>"你们咸粽派根本不懂，粽子蘸白糖才是刻在DNA里的仪式感！"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap mb-4">
+                        <div class="data-pill bg-red-100 text-red-600"><i class="fas fa-heart mr-1"></i> 豆沙粽</div>
+                        <div class="data-pill bg-red-100 text-red-600"><i class="fas fa-heart mr-1"></i> 红枣粽</div>
+                        <div class="data-pill bg-red-100 text-red-600"><i class="fas fa-heart mr-1"></i> 蜜枣粽</div>
+                    </div>
+                    <button class="vote-btn w-full py-3 bg-gradient-to-r from-red-400 to-pink-500 text-white rounded-lg font-bold">
+                        <i class="fas fa-vote-yea mr-2"></i>为甜粽子投票
+                    </button>
+                </div>
+
+                <!-- 咸粽子 -->
+                <div class="zongzi-card glassmorphism p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-bacon"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-blue-600">咸粽子派</h3>
+                    </div>
+                    <img src="https://p3-search.byteimg.com/obj/labis/96892ebc0a970d641e3e0deebc966464" alt="咸粽子" class="w-full rounded-lg mb-4">
+                    <p class="text-gray-600 mb-4">"咸粽子才是王道！蛋黄的沙糯、五花肉的肥美、香菇的鲜香，每一口都是满足的滋味！"</p>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-700 mb-2">咸粽派则以华南、西南地区为首，坚信'无肉不欢'</h4>
+                        <div class="comment-bubble">
+                            <p>"甜粽必须从世界上消失！"</p>
+                        </div>
+                        <div class="comment-bubble">
+                            <p>"没有五花肉和咸蛋黄的粽子只是糯米团子！"</p>
+                        </div>
+                        <div class="comment-bubble">
+                            <p>"甜粽吃两口就腻？我们的梅干菜扣肉粽能当正餐！"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap mb-4">
+                        <div class="data-pill bg-blue-100 text-blue-600"><i class="fas fa-heart mr-1"></i> 蛋黄肉粽</div>
+                        <div class="data-pill bg-blue-100 text-blue-600"><i class="fas fa-heart mr-1"></i> 五花肉粽</div>
+                        <div class="data-pill bg-blue-100 text-blue-600"><i class="fas fa-heart mr-1"></i> 香菇粽</div>
+                    </div>
+                    <button class="vote-btn w-full py-3 bg-gradient-to-r from-blue-400 to-indigo-500 text-white rounded-lg font-bold">
+                        <i class="fas fa-vote-yea mr-2"></i>为咸粽子投票
+                    </button>
+                </div>
+            </div>
+
+            <!-- 口水仗可视化场景 -->
+            <div class="glassmorphism p-6 mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-center">粽子口味'口水仗'可视化</h3>
+                <div class="debate-scene">
+                    <div class="debate-item">
+                      <p class="text-sm text-gray-600">甜咸粽子粉丝激烈辩论</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他口味 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 碱水粽 -->
+                <div class="zongzi-card glassmorphism p-6">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-2">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-purple-600">碱水粽</h4>
+                    </div>
+                    <img src="https://s.coze.cn/t/C2CNhDfXsVc/" alt="碱水粽" class="w-full rounded-lg mb-2">
+                    <p class="text-sm text-gray-600 mb-3">"我们碱水粽才是原汁原味！蘸红糖吃，Q弹爽口，回味无穷！"</p>
+                    <button class="vote-btn w-full py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-lg text-sm font-bold">
+                        <i class="fas fa-vote-yea mr-1"></i>投票
+                    </button>
+                </div>
+
+                <!-- 八宝粽 -->
+                <div class="zongzi-card glassmorphism p-6">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-2">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-green-600">八宝粽</h4>
+                    </div>
+                    <img src="https://s.coze.cn/t/wVC3KT8Dssk/" alt="八宝粽" class="w-full rounded-lg mb-2">
+                    <p class="text-sm text-gray-600 mb-3">"我们八宝粽营养最均衡！各种谷物杂粮，健康又美味！"</p>
+                    <button class="vote-btn w-full py-2 bg-gradient-to-r from-green-400 to-teal-400 text-white rounded-lg text-sm font-bold">
+                        <i class="fas fa-vote-yea mr-1"></i>投票
+                    </button>
+                </div>
+
+                <!-- 创新口味 -->
+                <div class="zongzi-card glassmorphism p-6">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 mr-2">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-yellow-600">创新派</h4>
+                    </div>
+                    <img src="https://s.coze.cn/t/DwtAiy1QUj4/" alt="创新粽子" class="w-full rounded-lg mb-2">
+                    <p class="text-sm text-gray-600 mb-3">"我们才是未来！榴莲粽、巧克力粽、冰淇淋粽，打破传统界限！"</p>
+                    <button class="vote-btn w-full py-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-lg text-sm font-bold">
+                        <i class="fas fa-vote-yea mr-1"></i>投票
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投票结果 -->
+    <section class="container mx-auto py-12 px-4 md:px-8">
+        <div class="glassmorphism p-8">
+            <h2 class="text-3xl font-bold mb-6 flex items-center">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-yellow-500 flex items-center justify-center text-white mr-3">
+                    <i class="fas fa-poll"></i>
+                </div>
+                你最喜欢哪种<span class="text-yellow-600 ml-2">粽子</span>？
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-gray-600 mb-6">端午节将至，甜咸粽子之争再次成为热门话题。无论你是传统派还是创新派，每种粽子都有其独特的魅力。</p>
+                    
+                    <div class="bg-yellow-50 rounded-xl p-4 mb-6">
+                        <p class="text-yellow-800 font-medium mb-2"><i class="fas fa-quote-left text-yellow-400 mr-2"></i>粽子文化小知识</p>
+                        <p class="text-gray-700">粽子最早出现在春秋时期，用来祭祀祖先和神灵。到了晋代，粽子成为端午节庆食物。不同地区的粽子各具特色，反映了中国丰富多样的饮食文化。</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="border-l-4 border-green-500 pl-4 py-3 mb-6">
+                        <p class="text-gray-700 mb-2">无论甜咸，粽子都承载着我们对传统文化的记忆和对美好生活的向往。</p>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button class="vote-btn px-8 py-4 bg-gradient-to-r from-green-500 to-yellow-500 text-white rounded-full text-xl font-bold shadow-lg">
+                            <i class="fas fa-dragon mr-2"></i>查看投票结果
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="container mx-auto py-8 px-4 text-center text-gray-500 text-sm">
+        <p>akahol 制作</p>
+    </footer>
+
+    <script>
+        // 投票按钮点击效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const voteButtons = document.querySelectorAll('.vote-btn');
+            
+            voteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 动画效果
+                    this.classList.add('animate-pulse-slow');
+                    
+                    // 模拟投票
+                    setTimeout(() => {
+                        alert('感谢您的投票！端午节快乐！');
+                        this.classList.remove('animate-pulse-slow');
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
